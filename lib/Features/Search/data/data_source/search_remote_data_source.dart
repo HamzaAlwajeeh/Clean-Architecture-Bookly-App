@@ -1,6 +1,6 @@
 import 'package:bookly_app/core/api_service.dart';
+import 'package:bookly_app/core/entities/book_entity.dart';
 import 'package:bookly_app/core/functions/get_books_list.dart';
-import 'package:bookly_app/core/models/entities/book_entity.dart';
 
 class SearchRemoteDataSource {
   final ApiService apiService;
