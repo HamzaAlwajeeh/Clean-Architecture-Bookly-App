@@ -28,8 +28,16 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BookEntity>>> fetchNewsetBooks() {
-    // TODO: implement fetchNewsetBooks
-    throw UnimplementedError();
+  Future<Either<Failure, List<BookEntity>>> fetchNewsetBooks() async {
+    try {
+      var cachedBooks = homeLocalDataSource.fetchNewsetBooks();
+      if (cachedBooks.isNotEmpty) {
+        return right(cachedBooks);
+      }
+      var books = await homeRemoteDataSource.fetchNewsetBooks();
+      return right(books);
+    } catch (e) {
+      return left(Failure());
+    }
   }
 }
