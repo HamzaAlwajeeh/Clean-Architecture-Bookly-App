@@ -1,8 +1,8 @@
-import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/api_service.dart';
+import 'package:bookly_app/core/constants/constants.dart';
+import 'package:bookly_app/core/entities/book_entity.dart';
 import 'package:bookly_app/core/functions/get_books_list.dart';
 import 'package:bookly_app/core/functions/save_data_to_local_sourse.dart';
-import 'package:bookly_app/core/models/entities/book_entity.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks();

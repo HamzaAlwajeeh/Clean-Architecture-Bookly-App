@@ -1,8 +1,8 @@
 import 'package:bookly_app/Features/home/data/data_sources/home_local_data_source.dart';
 import 'package:bookly_app/Features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:bookly_app/Features/home/domain/repos/home_repo.dart';
+import 'package:bookly_app/core/entities/book_entity.dart';
 import 'package:bookly_app/core/errors/failure.dart';
-import 'package:bookly_app/core/models/entities/book_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
