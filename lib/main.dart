@@ -6,11 +6,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
-  Hive.initFlutter();
+  await Hive.initFlutter();
 
   Hive.registerAdapter(BookEntityAdapter());
 
-  Hive.openBox<BookEntity>(kBooksBox);
+  await Hive.openBox<BookEntity>(kBooksBox);
   runApp(const BooklyApp());
 }
 
