@@ -1,9 +1,8 @@
-import 'package:bookly_app/Features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/api_service.dart';
 import 'package:bookly_app/core/functions/get_books_list.dart';
 import 'package:bookly_app/core/functions/save_data_to_local_sourse.dart';
-import 'package:hive/hive.dart';
+import 'package:bookly_app/core/models/entities/book_entity.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchFeaturedBooks();
@@ -22,7 +21,8 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     );
 
     List<BookEntity> books = getBooksList(data);
-    return saveDataToLocalSource(books: books, boxName: kFeaturedBox);
+    saveDataToLocalSource(books: books, boxName: kFeaturedBox);
+    return books;
   }
 
   @override
@@ -32,8 +32,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
           'volumes?Filtering=free-ebooks&q=subject:programming&sorting=newset',
     );
     List<BookEntity> books = getBooksList(data);
-    var box = Hive.box<BookEntity>(kNewsetBox);
-    box.addAll(books);
+    saveDataToLocalSource(books: books, boxName: kNewsetBox);
     return books;
   }
 }
