@@ -25,7 +25,7 @@ class NewsetBooksListViewItem extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: CachedNetworkImage(
-                  imageUrl: book!.image!,
+                  imageUrl: book?.image ?? '',
                   fit: BoxFit.fill,
                   placeholder:
                       (context, url) =>
@@ -43,7 +43,7 @@ class NewsetBooksListViewItem extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: Text(
-                    book!.title,
+                    book?.title ?? '',
                     style: Styles.textStyle20.copyWith(
                       fontFamily: kGtSectraFine,
                     ),
@@ -52,14 +52,14 @@ class NewsetBooksListViewItem extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 3),
-                Text(book!.authorName ?? 'unKnown', style: Styles.textStyle14),
+                Text(book?.authorName ?? 'unKnown', style: Styles.textStyle14),
                 SizedBox(height: 3),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      book!.price.toString(),
+                      book?.price.toString() ?? '0',
                       style: Styles.textStyle20.copyWith(
                         fontWeight: FontWeight.bold,
                       ),

@@ -7,13 +7,14 @@ class NewsetBookListView extends StatelessWidget {
   final List<BookEntity> booksList;
   @override
   Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate((context, index) {
+    return ListView.builder(
+      itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
           child: NewsetBooksListViewItem(),
         );
-      }, childCount: booksList.length),
+      },
+      itemCount: booksList.length,
     );
   }
 }

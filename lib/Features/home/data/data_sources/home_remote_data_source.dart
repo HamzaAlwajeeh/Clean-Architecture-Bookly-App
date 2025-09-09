@@ -28,8 +28,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   @override
   Future<List<BookEntity>> fetchNewsetBooks() async {
     var data = await apiService.get(
-      endPoint:
-          'volumes?Filtering=free-ebooks&q=subject:programming&sorting=newset',
+      endPoint: 'volumes?Filtering=free-ebooks&q=subject:Pharmacy',
     );
     List<BookEntity> books = getBooksList(data);
     saveDataToLocalSource(books: books, boxName: kNewsetBox);

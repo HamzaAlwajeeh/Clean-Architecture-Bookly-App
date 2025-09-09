@@ -30,7 +30,7 @@ class HomeViewBody extends StatelessWidget {
                   ],
                 ),
               ),
-              NewsetBooksListViewBlocBuilder(),
+              SliverFillRemaining(child: NewsetBooksListViewBlocBuilder()),
             ],
           ),
         ),
