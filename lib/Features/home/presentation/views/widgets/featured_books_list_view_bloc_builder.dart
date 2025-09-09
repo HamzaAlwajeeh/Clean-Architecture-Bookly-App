@@ -1,7 +1,7 @@
 import 'package:bookly_app/Features/home/presentation/controllers/cubits/featured_books_cubit/featured_books_cubit.dart';
 import 'package:bookly_app/Features/home/presentation/controllers/cubits/featured_books_cubit/featured_books_state.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/featured_books_list_view.dart';
-import 'package:bookly_app/core/utils/widgets/custom_loading_indecator.dart7';
+import 'package:bookly_app/core/utils/widgets/custom_loading_indecator.dart';
 import 'package:bookly_app/core/widgets/custom_error_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
