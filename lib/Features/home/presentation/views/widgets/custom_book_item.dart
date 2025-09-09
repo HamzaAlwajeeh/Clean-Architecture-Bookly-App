@@ -1,11 +1,11 @@
 import 'package:bookly_app/core/utils/app_router.dart';
-import 'package:bookly_app/core/utils/assets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomBookItem extends StatelessWidget {
-  const CustomBookItem({super.key});
-
+  const CustomBookItem({super.key, required this.image});
+  final String image;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -14,13 +14,15 @@ class CustomBookItem extends StatelessWidget {
       },
       child: AspectRatio(
         aspectRatio: 2 / 3,
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(AssetsData.testImage),
-              fit: BoxFit.cover,
-            ),
-            borderRadius: BorderRadius.circular(16),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: CachedNetworkImage(
+            imageUrl: image,
+            fit: BoxFit.fill,
+            placeholder:
+                (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
         ),
       ),

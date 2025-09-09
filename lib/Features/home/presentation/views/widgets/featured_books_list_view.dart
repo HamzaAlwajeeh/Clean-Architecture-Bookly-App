@@ -1,9 +1,10 @@
 import 'package:bookly_app/Features/Home/presentation/views/widgets/custom_book_item.dart';
+import 'package:bookly_app/core/entities/book_entity.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedBookslistview extends StatelessWidget {
-  const FeaturedBookslistview({super.key});
-
+  const FeaturedBookslistview({super.key, required this.booksList});
+  final List<BookEntity> booksList;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -15,10 +16,10 @@ class FeaturedBookslistview extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6),
-            child: const CustomBookItem(),
+            child: CustomBookItem(image: booksList[index].image ?? ''),
           );
         },
-        itemCount: 10,
+        itemCount: booksList.length,
       ),
     );
   }
