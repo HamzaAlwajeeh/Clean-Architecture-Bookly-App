@@ -13,7 +13,7 @@ class NewsetBookListView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
           child: NewsetBooksListViewItem(),
         );
-      }, childCount: 20),
+      }, childCount: booksList.length),
     );
   }
 }
