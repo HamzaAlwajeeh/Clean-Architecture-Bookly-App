@@ -50,7 +50,7 @@ class _FeaturedBookslistviewState extends State<FeaturedBookslistview> {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6),
-            child: CustomBookItem(image: widget.booksList[index].image ?? ''),
+            child: CustomBookItem(book: widget.booksList[index]),
           );
         },
         itemCount: widget.booksList.length,

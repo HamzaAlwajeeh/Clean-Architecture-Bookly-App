@@ -14,7 +14,7 @@ class NewsetBooksListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kDetailsView);
+        GoRouter.of(context).push(AppRouter.kDetailsView, extra: book);
       },
       child: Row(
         children: [
@@ -59,7 +59,7 @@ class NewsetBooksListViewItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      book?.price.toString() ?? 'Free',
+                      'Free',
                       style: Styles.textStyle20.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
