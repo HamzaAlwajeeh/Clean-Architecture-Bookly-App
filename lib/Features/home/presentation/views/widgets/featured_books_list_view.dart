@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bookly_app/Features/Home/presentation/views/widgets/custom_book_item.dart';
 import 'package:bookly_app/Features/home/presentation/controllers/cubits/featured_books_cubit/featured_books_cubit.dart';
 import 'package:bookly_app/core/entities/book_entity.dart';
@@ -17,6 +19,7 @@ class _FeaturedBookslistviewState extends State<FeaturedBookslistview> {
   int pageNumber = 1;
   @override
   void initState() {
+    log('pageNumber ===============> $pageNumber');
     super.initState();
     scrollController.addListener(scrollLesener);
   }

@@ -14,7 +14,7 @@ class NewsetBookListView extends StatefulWidget {
 
 class _NewsetBookListViewState extends State<NewsetBookListView> {
   final ScrollController scrollController = ScrollController();
-
+  int pageNumber = 1;
   @override
   void initState() {
     super.initState();
@@ -25,8 +25,17 @@ class _NewsetBookListViewState extends State<NewsetBookListView> {
     var currentPosition = scrollController.position.pixels;
     var maxScrollLength = scrollController.position.maxScrollExtent;
     if (currentPosition >= 0.7 * maxScrollLength) {
-      BlocProvider.of<NewsetBooksCubit>(context).fetchNewsetBooks();
+      BlocProvider.of<NewsetBooksCubit>(
+        context,
+      ).fetchNewsetBooks(pageNumber: pageNumber++);
+      setState(() {});
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
   }
 
   @override
