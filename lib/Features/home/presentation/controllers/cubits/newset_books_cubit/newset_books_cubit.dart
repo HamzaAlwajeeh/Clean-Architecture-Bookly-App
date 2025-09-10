@@ -20,12 +20,19 @@ class NewsetBooksCubit extends Cubit<NewsetBooksState> {
     }
     var result = await fetchNewsetBooksUseCase.call(pageNumber);
 
-    result.fold((failure) => emit(NewsetBooksFailure(failure.errorMessage)), (
-      books,
-    ) {
-      log('PageNumber :==========> $pageNumber');
-      emit(NewsetBooksSuccess(books));
-      pageNumber += 1;
-    });
+    result.fold(
+      (failure) {
+        if (pageNumber == 0) {
+          emit(NewsetBooksFailure(failure.errorMessage));
+        } else {
+          emit(NewsetBooksPaginationFailure(failure.errorMessage));
+        }
+      },
+      (books) {
+        log('PageNumber :==========> $pageNumber');
+        emit(NewsetBooksSuccess(books));
+        pageNumber += 1;
+      },
+    );
   }
 }

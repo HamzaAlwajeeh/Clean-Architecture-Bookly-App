@@ -14,6 +14,12 @@ final class NewsetBooksFailure extends NewsetBooksState {
   NewsetBooksFailure(this.errMessage);
 }
 
+final class NewsetBooksPaginationFailure extends NewsetBooksState {
+  final String errMessage;
+
+  NewsetBooksPaginationFailure(this.errMessage);
+}
+
 final class NewsetBooksSuccess extends NewsetBooksState {
   final List<BookEntity> books;
 
