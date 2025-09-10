@@ -7,14 +7,16 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
     : super(FeaturedBooksInitial());
 
   final FeachFeatureBooksUseCase feachFeatureBooksUseCase;
-
-  Future<void> fetchFeaturedBooks({int pageNumber = 0}) async {
+  int pageNumber = 0;
+  Future<void> fetchFeaturedBooks() async {
     emit(FeaturedBooksLoading());
     var result = await feachFeatureBooksUseCase.call(pageNumber);
 
-    result.fold(
-      (failure) => emit(FeaturedBooksFailure(failure.errorMessage)),
-      (books) => emit(FeaturedBooksSuccess(books)),
-    );
+    result.fold((failure) => emit(FeaturedBooksFailure(failure.errorMessage)), (
+      books,
+    ) {
+      emit(FeaturedBooksSuccess(books));
+      pageNumber += 1;
+    });
   }
 }

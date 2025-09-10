@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bookly_app/Features/Home/presentation/views/widgets/custom_book_item.dart';
 import 'package:bookly_app/Features/home/presentation/controllers/cubits/featured_books_cubit/featured_books_cubit.dart';
 import 'package:bookly_app/core/entities/book_entity.dart';
@@ -16,7 +14,6 @@ class FeaturedBookslistview extends StatefulWidget {
 
 class _FeaturedBookslistviewState extends State<FeaturedBookslistview> {
   final ScrollController scrollController = ScrollController();
-  int pageNumber = 1;
   bool isLoading = false;
   @override
   void initState() {
@@ -29,10 +26,7 @@ class _FeaturedBookslistviewState extends State<FeaturedBookslistview> {
     var maxScrollLength = scrollController.position.maxScrollExtent;
     if (currentPosition >= 0.7 * maxScrollLength) {
       if (!isLoading) {
-        log('pageNumber ===============> $pageNumber');
-        await BlocProvider.of<FeaturedBooksCubit>(
-          context,
-        ).fetchFeaturedBooks(pageNumber: pageNumber++);
+        await BlocProvider.of<FeaturedBooksCubit>(context).fetchFeaturedBooks();
         isLoading = true;
       }
     }
