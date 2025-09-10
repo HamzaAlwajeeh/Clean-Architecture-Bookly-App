@@ -6,6 +6,8 @@ final class NewsetBooksInitial extends NewsetBooksState {}
 
 final class NewsetBooksLoading extends NewsetBooksState {}
 
+final class NewsetBooksPaginationLoading extends NewsetBooksState {}
+
 final class NewsetBooksFailure extends NewsetBooksState {
   final String errMessage;
 
