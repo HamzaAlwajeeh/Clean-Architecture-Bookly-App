@@ -5,7 +5,7 @@ import 'package:bookly_app/core/functions/get_books_list.dart';
 import 'package:bookly_app/core/functions/save_data_to_local_sourse.dart';
 
 abstract class HomeRemoteDataSource {
-  Future<List<BookEntity>> fetchFeaturedBooks();
+  Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0});
   Future<List<BookEntity>> fetchNewsetBooks();
 }
 
@@ -15,9 +15,10 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   HomeRemoteDataSourceImpl({required this.apiService});
 
   @override
-  Future<List<BookEntity>> fetchFeaturedBooks() async {
+  Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber = 0}) async {
     var data = await apiService.get(
-      endPoint: 'volumes?Filtering=free-ebooks&q=subject:Pharmacy',
+      endPoint:
+          'volumes?Filtering=free-ebooks&q=subject:Pharmacy&startIndex=${pageNumber * 10}',
     );
 
     List<BookEntity> books = getBooksList(data);
@@ -28,7 +29,8 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   @override
   Future<List<BookEntity>> fetchNewsetBooks() async {
     var data = await apiService.get(
-      endPoint: 'volumes?Filtering=free-ebooks&q=subject:Pharmacy',
+      endPoint:
+          'volumes?Filtering=free-ebooks&q=subject:programming&sorting=newset',
     );
     List<BookEntity> books = getBooksList(data);
     saveDataToLocalSource(books: books, boxName: kNewsetBox);

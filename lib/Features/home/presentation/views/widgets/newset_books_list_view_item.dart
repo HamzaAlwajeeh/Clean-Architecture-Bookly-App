@@ -59,7 +59,7 @@ class NewsetBooksListViewItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      book?.price.toString() ?? '0',
+                      book?.price.toString() ?? 'Free',
                       style: Styles.textStyle20.copyWith(
                         fontWeight: FontWeight.bold,
                       ),

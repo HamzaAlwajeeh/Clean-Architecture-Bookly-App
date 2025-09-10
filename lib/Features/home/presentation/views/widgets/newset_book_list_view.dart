@@ -5,13 +5,14 @@ import 'package:flutter/material.dart';
 class NewsetBookListView extends StatelessWidget {
   const NewsetBookListView({super.key, required this.booksList});
   final List<BookEntity> booksList;
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
-          child: NewsetBooksListViewItem(),
+          child: NewsetBooksListViewItem(book: booksList[index]),
         );
       },
       itemCount: booksList.length,

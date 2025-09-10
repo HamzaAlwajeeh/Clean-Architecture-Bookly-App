@@ -25,4 +25,9 @@ class BookEntity {
     required this.price,
     required this.rating,
   });
+
+  @override
+  String toString() {
+    return 'BookEntity(bookId: $bookId, image: $image, title: $title, authorName: $authorName, price: $price, rating: $rating)';
+  }
 }
