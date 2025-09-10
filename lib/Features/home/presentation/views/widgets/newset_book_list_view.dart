@@ -14,21 +14,21 @@ class NewsetBookListView extends StatefulWidget {
 
 class _NewsetBookListViewState extends State<NewsetBookListView> {
   final ScrollController scrollController = ScrollController();
-  int pageNumber = 1;
+  bool isLoading = false;
   @override
   void initState() {
     super.initState();
     scrollController.addListener(scrollLesener);
   }
 
-  void scrollLesener() {
+  void scrollLesener() async {
     var currentPosition = scrollController.position.pixels;
     var maxScrollLength = scrollController.position.maxScrollExtent;
     if (currentPosition >= 0.7 * maxScrollLength) {
-      BlocProvider.of<NewsetBooksCubit>(
-        context,
-      ).fetchNewsetBooks(pageNumber: pageNumber++);
-      setState(() {});
+      if (!isLoading) {
+        await BlocProvider.of<NewsetBooksCubit>(context).fetchNewsetBooks();
+        isLoading = true;
+      }
     }
   }
 
