@@ -25,10 +25,10 @@ class _FeaturedBookslistviewState extends State<FeaturedBookslistview> {
     var currentPosition = scrollController.position.pixels;
     var maxScrollLength = scrollController.position.maxScrollExtent;
     if (currentPosition >= 0.7 * maxScrollLength) {
-      if (!isLoading) {
-        await BlocProvider.of<FeaturedBooksCubit>(context).fetchFeaturedBooks();
-        isLoading = true;
-      }
+      await BlocProvider.of<FeaturedBooksCubit>(context).fetchFeaturedBooks();
+      // if (!isLoading) {
+      //   isLoading = true;
+      // }
     }
   }
 
