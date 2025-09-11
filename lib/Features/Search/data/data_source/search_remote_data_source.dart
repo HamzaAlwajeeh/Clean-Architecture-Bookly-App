@@ -10,7 +10,9 @@ class SearchRemoteDataSource {
   Future<List<BookEntity>> fetchSearchBooks({
     required String searchWord,
   }) async {
-    var data = await apiService.get(endPoint: 'volumes?q=$searchWord');
+    var data = await apiService.get(
+      endPoint: 'volumes?filtering=free-ebooks&q=subject:$searchWord',
+    );
     List<BookEntity> books = getBooksList(data);
     return books;
   }
