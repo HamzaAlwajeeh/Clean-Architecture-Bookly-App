@@ -44,6 +44,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       endPoint: 'volumes?filtering=free-ebooks&q=subject:$category',
     );
     List<BookEntity> books = getBooksList(data);
+    saveDataToLocalSource(books: books, boxName: kSimilarBox);
     return books;
   }
 }
