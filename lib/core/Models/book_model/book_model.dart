@@ -5,13 +5,13 @@ import 'sale_info.dart';
 import 'volume_info.dart';
 
 class BookModel extends BookEntity {
-  String? kind;
-  String? id;
-  String? etag;
-  String? selfLink;
-  VolumeInfo? volumeInfo;
-  SaleInfo? saleInfo;
-  AccessInfo? accessInfo;
+  final String? kind;
+  final String? id;
+  final String? etag;
+  final String? selfLink;
+  final VolumeInfo? volumeInfo;
+  final SaleInfo? saleInfo;
+  final AccessInfo? accessInfo;
 
   BookModel({
     this.kind,
@@ -22,10 +22,13 @@ class BookModel extends BookEntity {
     this.saleInfo,
     this.accessInfo,
   }) : super(
-         bookId: id!,
+         bookId: id ?? '',
          image: volumeInfo?.imageLinks?.thumbnail ?? '',
-         title: volumeInfo!.title!,
-         authorName: volumeInfo.authors?.first ?? 'Unkown',
+         title: volumeInfo?.title ?? 'Untitled',
+         authorName:
+             (volumeInfo?.authors != null && volumeInfo!.authors!.isNotEmpty)
+                 ? volumeInfo.authors!.first
+                 : 'Unknown',
          price: 0.0,
          rating: null,
        );
@@ -36,17 +39,17 @@ class BookModel extends BookEntity {
     etag: json['etag'] as String?,
     selfLink: json['selfLink'] as String?,
     volumeInfo:
-        json['volumeInfo'] == null
-            ? null
-            : VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
+        json['volumeInfo'] != null
+            ? VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>)
+            : null,
     saleInfo:
-        json['saleInfo'] == null
-            ? null
-            : SaleInfo.fromJson(json['saleInfo'] as Map<String, dynamic>),
+        json['saleInfo'] != null
+            ? SaleInfo.fromJson(json['saleInfo'] as Map<String, dynamic>)
+            : null,
     accessInfo:
-        json['accessInfo'] == null
-            ? null
-            : AccessInfo.fromJson(json['accessInfo'] as Map<String, dynamic>),
+        json['accessInfo'] != null
+            ? AccessInfo.fromJson(json['accessInfo'] as Map<String, dynamic>)
+            : null,
   );
 
   Map<String, dynamic> toJson() => {
