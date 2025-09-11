@@ -1,5 +1,5 @@
 import 'package:bookly_app/Features/Search/presentation/views/widgets/custom_text_field.dart';
-import 'package:bookly_app/Features/Search/presentation/views/widgets/search_result_list_view.dart';
+import 'package:bookly_app/Features/Search/presentation/views/widgets/search_result_list_view_bloc_builder.dart';
 import 'package:bookly_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +21,7 @@ class SearchViewBody extends StatelessWidget {
               style: Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-            Expanded(child: SearchResultListView()),
+            Expanded(child: SearchResultListViewBolcBuilder()),
           ],
         ),
       ),
