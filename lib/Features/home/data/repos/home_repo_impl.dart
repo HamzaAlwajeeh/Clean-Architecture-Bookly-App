@@ -59,4 +59,12 @@ class HomeRepoImpl implements HomeRepo {
       return left(ServerFailure(errorMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<BookEntity>>> fetchSimilarBooks({
+    required String category,
+  }) {
+    // TODO: implement fetchSimilarBooks
+    throw UnimplementedError();
+  }
 }
