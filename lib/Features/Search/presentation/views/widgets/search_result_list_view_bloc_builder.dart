@@ -17,6 +17,8 @@ class SearchResultListViewBolcBuilder extends StatelessWidget {
           return SearchResultListView(books: state.books);
         } else if (state is SearchFailure) {
           return CustomErrorMessage(erroeMessage: state.errMessage);
+        } else if (state is SearchInitial) {
+          return const CustomErrorMessage(erroeMessage: 'Search for a book');
         } else {
           return const CustomLoadingIndecator();
         }
