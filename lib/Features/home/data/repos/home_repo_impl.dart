@@ -63,8 +63,17 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<Failure, List<BookEntity>>> fetchSimilarBooks({
     required String category,
-  }) {
-    // TODO: implement fetchSimilarBooks
-    throw UnimplementedError();
+  }) async {
+    try {
+      List<BookEntity> books = await homeRemoteDataSource.fetchSimilarBooks(
+        category: category,
+      );
+      return right(books);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
   }
 }
