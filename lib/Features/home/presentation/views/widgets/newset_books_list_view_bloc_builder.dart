@@ -44,9 +44,11 @@ class _NewsetBooksListViewBlocBuilderState
             state is NewsetBooksPaginationFailure) {
           return NewsetBookListView(booksList: books);
         } else if (state is NewsetBooksFailure) {
-          return CustomErrorMessage(erroeMessage: state.errMessage);
+          return SliverToBoxAdapter(
+            child: CustomErrorMessage(erroeMessage: state.errMessage),
+          );
         } else {
-          return CustomLoadingIndecator();
+          return SliverToBoxAdapter(child: CustomLoadingIndecator());
         }
       },
     );

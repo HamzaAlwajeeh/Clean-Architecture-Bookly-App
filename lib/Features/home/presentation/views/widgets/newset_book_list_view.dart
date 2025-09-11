@@ -43,15 +43,13 @@ class _NewsetBookListViewState extends State<NewsetBookListView> {
   @override
   Widget build(BuildContext context) {
     log('length : ================>${widget.booksList.length}');
-    return ListView.builder(
-      controller: scrollController,
-      itemBuilder: (context, index) {
+    return SliverList(
+      delegate: SliverChildBuilderDelegate((context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
           child: NewsetBooksListViewItem(book: widget.booksList[index]),
         );
-      },
-      itemCount: widget.booksList.length,
+      }, childCount: widget.booksList.length),
     );
   }
 }
